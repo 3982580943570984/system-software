@@ -10,6 +10,7 @@ int main()
     const auto path = std::getenv("TIMEWRITER_FILE");
 
     auto out = std::ofstream{path, std::ios::app};
+    if (!out) return 1;
 
     const auto utc = floor<seconds>(system_clock::now());
     const auto now = zoned_time{current_zone(), utc};
