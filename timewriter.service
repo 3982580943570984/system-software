@@ -1,0 +1,10 @@
+[Unit]
+Description=Запись текущего времени в файл
+
+[Service]
+Type=oneshot
+Environment=TIMEWRITER_FILE=/var/log/timewriter.log
+ExecStart=/usr/local/bin/timewriter
+TimeoutStartSec=15
+Restart=on-failure
+RestartSec=10
