@@ -1,0 +1,12 @@
+[Unit]
+Description=Запись текущего времени в файл
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+Environment=TIMEWRITER_DIR=/var/log/timewriter
+ExecStart=/usr/bin/docker run --rm --init -v ${TIMEWRITER_DIR}:/data timewriter
+TimeoutStartSec=15
+Restart=on-failure
+RestartSec=10

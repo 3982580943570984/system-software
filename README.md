@@ -11,3 +11,11 @@ systemctl edit timewriter.service
 systemd-delta --type=extended
 systemctl show --property Environment timewriter.service
 ```
+
+```
+docker build --tag timewriter .
+cp timewriter.docker.{service,timer} /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now timewriter.docker.timer
+cat /var/log/timewriter/timewriter.log
+```
